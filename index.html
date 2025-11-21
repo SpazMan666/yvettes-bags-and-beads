@@ -53,40 +53,84 @@
             padding: 0 20px;
         }
 
-        /* ===== FIXED HEADER ===== */
+        /* ===== ENHANCED RESPONSIVE GRID ===== */
+        .collections, .products {
+            display: grid;
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        /* Desktop: 3 columns */
+        @media (min-width: 992px) {
+            .collections, .products {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 50px;
+            }
+        }
+
+        /* Tablets: 2 columns */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .collections, .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+
+        /* Mobile: 2 columns */
+        @media (max-width: 767px) {
+            .collections, .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        /* Small phones: 1 column */
+        @media (max-width: 480px) {
+            .collections, .products {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        /* ===== IMPROVED HEADER ===== */
         .site-header {
             position: sticky;
             top: 0;
             width: 100%;
-            background: var(--cream);
+            background: rgba(245, 240, 230, 0.98);
+            backdrop-filter: blur(6px);
             border-bottom: 1px solid rgba(180, 138, 99, 0.15);
             z-index: 1000;
+            transition: all 0.3s ease;
             padding: 0 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .header-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 0;
-            gap: 20px;
+            padding: 20px 0;
+            gap: 30px;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             z-index: 1001;
             flex: 1;
             min-width: 0;
         }
 
         .brand-logo {
-            height: 50px;
+            height: 70px;
             width: auto;
             transition: transform 0.25s ease;
             border-radius: var(--border-radius);
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.05);
         }
 
         .brand-text {
@@ -98,7 +142,7 @@
         .brand-name {
             margin: 0;
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             color: var(--maroon);
             font-weight: 500;
             white-space: nowrap;
@@ -109,7 +153,7 @@
         .brand-tagline {
             margin: 0;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--natural-brown);
             font-style: italic;
             white-space: nowrap;
@@ -117,10 +161,10 @@
             text-overflow: ellipsis;
         }
 
-        /* ===== MOBILE NAVIGATION ===== */
+        /* ===== IMPROVED NAVIGATION ===== */
         .main-nav {
             display: flex;
-            gap: 25px;
+            gap: 35px;
             align-items: center;
             transition: all 0.3s ease;
         }
@@ -129,7 +173,7 @@
             position: relative;
             font-family: 'Cormorant Garamond', serif;
             font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--black);
             text-decoration: none;
             padding: 8px 4px;
@@ -159,18 +203,18 @@
 
         .header-actions {
             display: flex;
-            gap: 15px;
+            gap: 18px;
             align-items: center;
         }
 
         .icon-btn {
             background: transparent;
             border: none;
-            padding: 8px;
+            padding: 10px;
             border-radius: var(--border-radius-sm);
             cursor: pointer;
             color: var(--black);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             transition: transform 0.2s, color 0.2s;
         }
 
@@ -192,12 +236,12 @@
         }
 
         .search-input {
-            padding: 10px 15px;
+            padding: 12px 18px;
             border: 1px solid var(--twine-color);
             border-radius: var(--border-radius);
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            width: 250px;
+            font-size: 1.05rem;
+            width: 280px;
             background-color: var(--cream);
             transition: all 0.3s ease;
         }
@@ -229,7 +273,7 @@
         }
 
         .search-result-item {
-            padding: 10px 15px;
+            padding: 12px 18px;
             cursor: pointer;
             border-bottom: 1px solid rgba(212, 184, 150, 0.3);
             transition: background 0.2s;
@@ -243,13 +287,13 @@
             border-bottom: none;
         }
 
-        /* ===== MOBILE HAMBURGER MENU ===== */
+        /* ===== MOBILE HAMBURGER MENU - FIXED ===== */
         .hamburger {
             display: none;
             flex-direction: column;
             justify-content: space-between;
-            width: 28px;
-            height: 20px;
+            width: 32px;
+            height: 22px;
             background: transparent;
             border: none;
             cursor: pointer;
@@ -259,7 +303,7 @@
 
         .hamburger span {
             display: block;
-            height: 2.5px;
+            height: 3px;
             width: 100%;
             background-color: var(--black);
             border-radius: 3px;
@@ -267,7 +311,7 @@
         }
 
         .hamburger.active span:nth-child(1) {
-            transform: translateY(8.5px) rotate(45deg);
+            transform: translateY(9px) rotate(45deg);
         }
 
         .hamburger.active span:nth-child(2) {
@@ -275,15 +319,14 @@
         }
 
         .hamburger.active span:nth-child(3) {
-            transform: translateY(-8.5px) rotate(-45deg);
+            transform: translateY(-9px) rotate(-45deg);
         }
 
         /* ===== HERO SECTION ===== */
         .hero {
             position: relative;
-            height: 70vh;
+            height: 85vh;
             overflow: hidden;
-            margin-top: 0;
         }
 
         .hero-image {
@@ -294,7 +337,7 @@
 
         .hero-button-container {
             position: absolute;
-            bottom: 50px;
+            bottom: 80px;
             left: 0;
             width: 100%;
             display: flex;
@@ -302,19 +345,19 @@
             z-index: 2;
         }
 
-        /* ===== BUTTONS ===== */
+        /* ===== ELEGANT BUTTONS ===== */
         .btn {
             display: inline-block;
             background-color: var(--maroon);
             color: var(--white);
-            padding: 14px 30px;
+            padding: 16px 40px;
             text-decoration: none;
             font-weight: 500;
             border: none;
             border-radius: var(--border-radius);
             transition: all 0.4s;
-            font-size: 1rem;
-            letter-spacing: 1px;
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
             box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
             position: relative;
             overflow: hidden;
@@ -343,20 +386,20 @@
             box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4);
         }
 
-        /* ===== SECTION TITLES ===== */
+        /* ===== IMPROVED SECTION TITLES ===== */
         .section-title {
             text-align: center;
-            margin: 80px 0 50px;
+            margin: 120px 0 70px;
             position: relative;
         }
 
         .section-title h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 500;
             color: var(--maroon);
             display: inline-block;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
             position: relative;
             letter-spacing: 1px;
         }
@@ -364,7 +407,7 @@
         .section-title h2::after {
             content: '';
             position: absolute;
-            width: 100px;
+            width: 120px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--twine-color), transparent);
             bottom: 0;
@@ -373,62 +416,24 @@
             border-radius: 1px;
         }
 
-        /* ===== PRODUCT CARDS ===== */
-        .collections, .products {
-            display: grid;
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-
-        /* Desktop: 3 columns */
-        @media (min-width: 992px) {
-            .collections, .products {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 40px;
-            }
-        }
-
-        /* Tablets: 2 columns */
-        @media (min-width: 768px) and (max-width: 991px) {
-            .collections, .products {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 35px;
-            }
-        }
-
-        /* Mobile: 2 columns */
-        @media (max-width: 767px) {
-            .collections, .products {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-        }
-
-        /* Small phones: 1 column */
-        @media (max-width: 480px) {
-            .collections, .products {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-        }
-
+        /* ===== ENHANCED PRODUCT CARDS ===== */
         .collection-card, .product-card {
             background-color: var(--white);
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
             transition: all 0.4s;
             position: relative;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-lg);
             border: 1px solid rgba(212, 184, 150, 0.3);
         }
 
         .collection-card:hover, .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
 
         .collection-img, .product-img {
-            height: 250px;
+            height: 320px;
             overflow: hidden;
             background-color: var(--cream);
             display: flex;
@@ -451,14 +456,14 @@
         }
 
         .collection-info, .product-info {
-            padding: 20px;
+            padding: 30px;
             text-align: center;
         }
 
         .collection-info h3, .product-info h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             color: var(--maroon);
             font-weight: 500;
             letter-spacing: 0.5px;
@@ -466,24 +471,24 @@
 
         .collection-info p, .product-info p {
             color: var(--black);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-style: italic;
-            font-size: 1rem;
-            line-height: 1.5;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         /* ===== SIZE OPTIONS ===== */
         .size-options {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 15px;
+            gap: 15px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
 
         .size-option {
-            width: 36px;
-            height: 36px;
+            width: 42px;
+            height: 42px;
             border-radius: var(--border-radius-sm);
             border: 1px solid var(--maroon);
             display: flex;
@@ -494,7 +499,7 @@
             color: var(--maroon);
             transition: all 0.3s;
             position: relative;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
         .size-option:hover {
@@ -509,9 +514,9 @@
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-radius: var(--border-radius-sm);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             white-space: nowrap;
             opacity: 0;
             pointer-events: none;
@@ -524,21 +529,21 @@
 
         .inspect-btn {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 15px;
+            right: 15px;
             background: rgba(255, 255, 255, 0.95);
             color: var(--maroon);
             border: none;
             border-radius: var(--border-radius-sm);
-            width: 36px;
-            height: 36px;
+            width: 42px;
+            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s;
             z-index: 5;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             opacity: 0;
         }
 
@@ -552,13 +557,13 @@
         .inspect-btn:hover {
             background: var(--white);
             transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* ===== FEATURED PRODUCTS SECTION ===== */
         .featured-products {
             background-color: var(--white);
-            padding: 80px 0;
+            padding: 100px 0;
             position: relative;
         }
 
@@ -574,7 +579,7 @@
 
         /* ===== ABOUT SECTION ===== */
         .about {
-            padding: 80px 0;
+            padding: 120px 0;
             background-color: var(--cream);
             position: relative;
         }
@@ -582,7 +587,7 @@
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: start;
         }
 
@@ -594,47 +599,47 @@
             order: 2;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 40px;
         }
 
         .about-text h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
             color: var(--maroon);
             font-weight: 500;
         }
 
         .about-text h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 30px;
             color: var(--black);
             font-weight: 500;
             font-style: italic;
         }
 
         .about-text p {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             color: var(--black);
-            font-size: 1.05rem;
-            line-height: 1.7;
+            font-size: 1.15rem;
+            line-height: 1.8;
         }
 
-        /* ===== IMAGE GALLERY ===== */
+        /* ===== ELEGANT IMAGE GALLERY ===== */
         .image-gallery {
             position: relative;
             width: 100%;
             overflow: hidden;
             border: 1px solid rgba(212, 184, 150, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
             border-radius: var(--border-radius);
         }
 
         .gallery-container {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 500px;
             overflow: hidden;
         }
 
@@ -670,7 +675,7 @@
             display: flex;
             justify-content: space-between;
             transform: translateY(-50%);
-            padding: 0 15px;
+            padding: 0 20px;
             z-index: 10;
         }
 
@@ -678,8 +683,8 @@
             background: rgba(128, 0, 32, 0.8);
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: var(--border-radius-sm);
             cursor: pointer;
             display: flex;
@@ -695,18 +700,18 @@
 
         .gallery-indicators {
             position: absolute;
-            bottom: 15px;
+            bottom: 20px;
             left: 0;
             width: 100%;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             z-index: 10;
         }
 
         .gallery-indicator {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
@@ -721,10 +726,10 @@
         /* ===== VIDEO CONTAINER ===== */
         .video-container {
             width: 100%;
-            height: 300px;
+            height: 400px;
             overflow: hidden;
             border: 1px solid rgba(212, 184, 150, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -743,28 +748,28 @@
         /* ===== COLOR PALETTE SECTION ===== */
         .color-palette {
             background: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            padding: 40px;
-            margin-bottom: 80px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            padding: 50px;
+            margin-bottom: 100px;
             border: 1px solid rgba(212, 184, 150, 0.3);
         }
 
         .color-intro {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .color-intro h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--maroon);
             font-weight: 500;
             margin-bottom: 15px;
         }
 
         .color-section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .color-section:last-child {
@@ -773,8 +778,8 @@
 
         .section-subtitle {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
             color: var(--maroon);
             font-weight: 500;
             letter-spacing: 0.5px;
@@ -783,15 +788,15 @@
 
         .color-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
         }
 
         .color-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 15px;
+            padding: 20px;
             border-radius: var(--border-radius);
             transition: all 0.3s ease;
             cursor: pointer;
@@ -800,23 +805,23 @@
         }
 
         .color-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             background: var(--white);
         }
 
         .color-swatch {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
 
         .color-name {
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--black);
             text-align: center;
         }
@@ -824,7 +829,7 @@
         /* ===== CONTACT SECTION ===== */
         .contact-info {
             background-color: var(--cream);
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
             position: relative;
         }
@@ -843,45 +848,45 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 40px;
+            gap: 50px;
+            margin-top: 50px;
         }
 
         .contact-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 280px;
-            padding: 25px;
+            max-width: 300px;
+            padding: 30px;
             transition: all 0.3s;
             position: relative;
             border-radius: var(--border-radius);
             background: var(--white);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .contact-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .contact-item i {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: var(--maroon);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .contact-item h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin-bottom: 12px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
             color: var(--maroon);
         }
 
         .contact-item p, .contact-item a {
             color: var(--black);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .location-tooltip {
@@ -891,14 +896,14 @@
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-radius: var(--border-radius-sm);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             white-space: nowrap;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s;
-            width: 180px;
+            width: 200px;
             text-align: center;
         }
 
@@ -906,11 +911,11 @@
             opacity: 1;
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== ELEGANT FOOTER ===== */
         footer {
             background-color: var(--black);
             color: var(--white);
-            padding: 80px 0 25px;
+            padding: 100px 0 30px;
             position: relative;
         }
 
@@ -926,18 +931,18 @@
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
         }
 
         .footer-column h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            margin-bottom: 25px;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
             color: var(--cream);
             font-weight: 500;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .footer-column ul {
@@ -945,14 +950,14 @@
         }
 
         .footer-column ul li {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .footer-column ul li a {
             color: #ccc;
             text-decoration: none;
             transition: color 0.3s;
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
 
         .footer-column ul li a:hover {
@@ -961,22 +966,22 @@
 
         .social-icons {
             display: flex;
-            margin-top: 25px;
+            margin-top: 30px;
         }
 
         .social-icons a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: var(--border-radius-sm);
-            margin-right: 12px;
+            margin-right: 15px;
             color: var(--white);
             text-decoration: none;
             transition: all 0.3s;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .social-icons a:hover {
@@ -986,17 +991,17 @@
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #999;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .credits {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-family: 'Cormorant Garamond', serif;
             letter-spacing: 0.5px;
         }
@@ -1010,12 +1015,12 @@
         /* ===== BACK TO TOP BUTTON ===== */
         .back-to-top {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            bottom: 30px;
+            right: 30px;
             background: var(--maroon);
             color: white;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: var(--border-radius);
             display: flex;
             align-items: center;
@@ -1025,7 +1030,7 @@
             visibility: hidden;
             transition: all 0.3s;
             z-index: 999;
-            box-shadow: 0 3px 12px rgba(128, 0, 32, 0.5);
+            box-shadow: 0 4px 15px rgba(128, 0, 32, 0.5);
         }
 
         .back-to-top.active {
@@ -1038,7 +1043,7 @@
             transform: translateY(-3px);
         }
 
-        /* ===== FULLSCREEN IMAGE MODAL ===== */
+        /* ===== FULLSCREEN IMAGE MODAL - FIXED FOR MOBILE ===== */
         .image-modal {
             display: none;
             position: fixed;
@@ -1049,7 +1054,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.95);
             animation: fadeIn 0.3s;
-            padding: 15px 10px;
+            padding: 20px 10px;
             align-items: center;
             justify-content: center;
         }
@@ -1065,7 +1070,7 @@
             width: auto;
             height: auto;
             border-radius: var(--border-radius);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
             object-fit: contain;
             position: relative;
             top: auto;
@@ -1078,14 +1083,14 @@
             top: 10px;
             right: 15px;
             color: #f1f1f1;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
             z-index: 2001;
             background: rgba(0, 0, 0, 0.7);
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1104,23 +1109,23 @@
             width: 100%;
             text-align: center;
             color: white;
-            font-size: 0.95rem;
-            padding: 8px;
+            font-size: 1rem;
+            padding: 10px;
             background: rgba(0, 0, 0, 0.7);
             border-radius: 0 0 var(--border-radius) var(--border-radius);
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
+        /* ===== ENHANCED RESPONSIVE DESIGN - FIXED ===== */
         @media (max-width: 1200px) {
             .container {
-                padding: 0 25px;
+                padding: 0 30px;
             }
         }
 
         @media (max-width: 992px) {
             .about-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 50px;
             }
             
             .about-media {
@@ -1132,11 +1137,11 @@
             }
             
             .color-grid {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
 
-        /* ===== MOBILE NAVIGATION ===== */
+        /* ===== FIXED MOBILE NAVIGATION ===== */
         @media (max-width: 768px) {
             /* Mobile Navigation */
             .hamburger {
@@ -1153,9 +1158,9 @@
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: flex-start;
-                padding: 100px 25px 30px;
+                padding: 120px 25px 30px;
                 gap: 20px;
-                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
                 transition: right 0.4s ease;
                 z-index: 999;
             }
@@ -1165,15 +1170,15 @@
             }
 
             .nav-link {
-                font-size: 1.1rem;
-                padding: 10px 0;
+                font-size: 1.2rem;
+                padding: 12px 0;
                 width: 100%;
             }
 
             .header-actions {
                 margin-top: 20px;
                 flex-direction: column;
-                gap: 12px;
+                gap: 15px;
                 width: 100%;
             }
 
@@ -1189,7 +1194,7 @@
 
             /* Header adjustments */
             .header-inner {
-                padding: 12px 0;
+                padding: 15px 0;
             }
 
             .brand {
@@ -1197,50 +1202,125 @@
             }
 
             .brand-name {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
 
             .brand-tagline {
-                font-size: 0.8rem;
+                font-size: 0.85rem;
             }
 
             /* Hero section */
             .hero {
-                height: 60vh;
+                height: 75vh;
             }
             
             .hero-button-container {
-                bottom: 40px;
+                bottom: 50px;
             }
             
             /* Section titles */
             .section-title {
-                margin: 70px 0 40px;
+                margin: 100px 0 50px;
             }
             
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            /* Collections and products - SMALLER ON MOBILE */
+            /* Collections and products */
             .collection-img, .product-img {
-                height: 180px;
+                height: 250px;
             }
             
             .collection-info, .product-info {
-                padding: 15px;
+                padding: 25px;
             }
             
             .collection-info h3, .product-info h3 {
-                font-size: 1.2rem;
+                font-size: 1.6rem;
             }
             
             .collection-info p, .product-info p {
-                font-size: 0.9rem;
-                margin-bottom: 10px;
+                font-size: 1.05rem;
             }
             
             /* Gallery and video */
+            .gallery-container {
+                height: 400px;
+            }
+            
+            .video-container {
+                height: 300px;
+            }
+            
+            /* Color palette */
+            .color-palette {
+                padding: 30px;
+            }
+            
+            .color-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 15px;
+            }
+            
+            .color-swatch {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .header-inner {
+                padding: 12px 0;
+            }
+
+            .brand {
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .brand-text {
+                align-items: flex-start;
+            }
+            
+            .brand-name {
+                font-size: 1.2rem;
+            }
+            
+            .brand-tagline {
+                font-size: 0.8rem;
+            }
+
+            .brand-logo {
+                height: 50px;
+            }
+
+            .hero {
+                height: 65vh;
+            }
+
+            .section-title {
+                margin: 80px 0 40px;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .collection-img, .product-img {
+                height: 220px;
+            }
+            
+            .social-icons a {
+                width: 45px;
+                height: 45px;
+            }
+            
             .gallery-container {
                 height: 300px;
             }
@@ -1249,106 +1329,15 @@
                 height: 250px;
             }
             
-            /* Color palette */
-            .color-palette {
-                padding: 25px;
-            }
-            
-            .color-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 12px;
-            }
-            
-            .color-swatch {
-                width: 60px;
-                height: 60px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            .header-inner {
-                padding: 10px 0;
-            }
-
-            .brand {
-                flex-direction: row;
-                align-items: center;
-                gap: 8px;
-            }
-            
-            .brand-text {
-                align-items: flex-start;
-            }
-            
-            .brand-name {
-                font-size: 1.1rem;
-            }
-            
-            .brand-tagline {
-                font-size: 0.75rem;
-            }
-
-            .brand-logo {
-                height: 40px;
-            }
-
-            .hero {
-                height: 50vh;
-            }
-
-            .section-title {
-                margin: 60px 0 30px;
-            }
-
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-            
-            /* Even smaller product cards on phones */
-            .collection-img, .product-img {
-                height: 150px;
-            }
-            
-            .collection-info, .product-info {
-                padding: 12px;
-            }
-            
-            .collection-info h3, .product-info h3 {
-                font-size: 1.1rem;
-            }
-            
-            .collection-info p, .product-info p {
-                font-size: 0.85rem;
-            }
-            
-            .social-icons a {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .gallery-container {
-                height: 250px;
-            }
-            
-            .video-container {
-                height: 200px;
-            }
-            
             .modal-content {
                 max-width: 95%;
-                max-height: 75%;
+                max-height: 80%;
             }
             
             .close-modal {
-                top: 10px;
-                right: 15px;
-                font-size: 24px;
-                width: 35px;
-                height: 35px;
+                top: 15px;
+                right: 20px;
+                font-size: 35px;
             }
             
             .color-grid {
@@ -1356,12 +1345,12 @@
             }
             
             .color-swatch {
-                width: 50px;
-                height: 50px;
+                width: 60px;
+                height: 60px;
             }
 
             .contact-details {
-                gap: 25px;
+                gap: 30px;
             }
 
             .contact-item {
@@ -1369,38 +1358,38 @@
             }
 
             .footer-content {
-                gap: 35px;
+                gap: 40px;
             }
 
             .btn {
-                padding: 12px 25px;
-                font-size: 0.95rem;
+                padding: 14px 30px;
+                font-size: 1rem;
             }
         }
 
         @media (max-width: 480px) {
             .brand-name {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .brand-tagline {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
 
             .brand-logo {
-                height: 35px;
+                height: 45px;
             }
 
             .hero {
-                height: 45vh;
+                height: 55vh;
             }
 
             .section-title h2 {
-                font-size: 1.6rem;
+                font-size: 2rem;
             }
 
             .collection-info, .product-info {
-                padding: 10px;
+                padding: 20px;
             }
             
             .color-grid {
@@ -1408,8 +1397,8 @@
             }
             
             .color-swatch {
-                width: 45px;
-                height: 45px;
+                width: 55px;
+                height: 55px;
             }
         }
 
@@ -1433,12 +1422,12 @@
         <i class="fas fa-chevron-up"></i>
     </div>
 
-    <!-- Header with Mobile Navigation -->
+    <!-- Updated Header with Mobile Navigation -->
     <header class="site-header">
         <div class="container header-inner">
             <div class="brand">
                 <a href="#" id="home-link">
-                    <img src="https://via.placeholder.com/60x60/800020/FFFFFF?text=YB" alt="Yvette's Bags & Beads Collection" class="brand-logo">
+                    <img src="images/logo.png" alt="Yvette's Bags & Beads Collection" class="brand-logo">
                 </a>
                 <div class="brand-text">
                     <h1 class="brand-name">Yvette's Bags & Beads</h1>
@@ -1475,7 +1464,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="https://via.placeholder.com/1200x600/f5f0e6/8B7355?text=Yvette's+Bags+Collection" alt="Yvette's Bags Collection" class="hero-image">
+        <img src="images/hero-background.jpg" alt="Yvette's Bags Collection" class="hero-image">
         <div class="hero-button-container">
             <a href="#popular-designs" class="btn">View Our Collections</a>
         </div>
@@ -1490,8 +1479,8 @@
             <!-- FIDELLE -->
             <div class="collection-card">
                 <div class="collection-img">
-                    <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=FIDELLE" alt="FIDELLE Bag" class="product-image">
-                    <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=FIDELLE" data-alt="FIDELLE Bag">
+                    <img src="images/fidelle.png" alt="FIDELLE Bag" class="product-image">
+                    <button class="inspect-btn" data-image="images/fidelle.png" data-alt="FIDELLE Bag">
                         <i class="fas fa-search-plus"></i>
                     </button>
                 </div>
@@ -1514,8 +1503,8 @@
             <!-- POODLE FULL -->
             <div class="collection-card">
                 <div class="collection-img">
-                    <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=POODLE+FULL" alt="POODLE FULL Bag" class="product-image">
-                    <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=POODLE+FULL" data-alt="POODLE FULL Bag">
+                    <img src="images/poodle-full.png" alt="POODLE FULL Bag" class="product-image">
+                    <button class="inspect-btn" data-image="images/poodle-full.png" data-alt="POODLE FULL Bag">
                         <i class="fas fa-search-plus"></i>
                     </button>
                 </div>
@@ -1538,8 +1527,8 @@
             <!-- TRIANGLE -->
             <div class="collection-card">
                 <div class="collection-img">
-                    <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=TRIANGLE" alt="TRIANGLE Bag" class="product-image">
-                    <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=TRIANGLE" data-alt="TRIANGLE Bag">
+                    <img src="images/triangle.png" alt="TRIANGLE Bag" class="product-image">
+                    <button class="inspect-btn" data-image="images/triangle.png" data-alt="TRIANGLE Bag">
                         <i class="fas fa-search-plus"></i>
                     </button>
                 </div>
@@ -1571,8 +1560,8 @@
                 <!-- ALEXANDRA -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=ALEXANDRA" alt="ALEXANDRA Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=ALEXANDRA" data-alt="ALEXANDRA Bag">
+                        <img src="images/alexandra.png" alt="ALEXANDRA Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/alexandra.png" data-alt="ALEXANDRA Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1595,8 +1584,8 @@
                 <!-- AMELIA -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=AMELIA" alt="AMELIA Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=AMELIA" data-alt="AMELIA Bag">
+                        <img src="images/amelia.png" alt="AMELIA Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/amelia.png" data-alt="AMELIA Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1615,8 +1604,8 @@
                 <!-- ASHTRAY -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/000000/FFFFFF?text=ASHTRAY" alt="ASHTRAY Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/000000/FFFFFF?text=ASHTRAY" data-alt="ASHTRAY Bag">
+                        <img src="images/ashtray.png" alt="ASHTRAY Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/ashtray.png" data-alt="ASHTRAY Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1635,8 +1624,8 @@
                 <!-- BAMBOO -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=BAMBOO" alt="BAMBOO Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=BAMBOO" data-alt="BAMBOO Bag">
+                        <img src="images/bamboo.png" alt="BAMBOO Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/bamboo.png" data-alt="BAMBOO Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1659,8 +1648,8 @@
                 <!-- BOAT BAG -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=BOAT+BAG" alt="BOAT BAG" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=BOAT+BAG" data-alt="BOAT BAG">
+                        <img src="images/boat-bag.png" alt="BOAT BAG" class="product-image">
+                        <button class="inspect-btn" data-image="images/boat-bag.png" data-alt="BOAT BAG">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1683,8 +1672,8 @@
                 <!-- CAMERA BAG -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=CAMERA+BAG" alt="CAMERA BAG" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=CAMERA+BAG" data-alt="CAMERA BAG">
+                        <img src="images/camera-bag.png" alt="CAMERA BAG" class="product-image">
+                        <button class="inspect-btn" data-image="images/camera-bag.png" data-alt="CAMERA BAG">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1703,8 +1692,8 @@
                 <!-- CLAUDETTE -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=CLAUDETTE" alt="CLAUDETTE Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=CLAUDETTE" data-alt="CLAUDETTE Bag">
+                        <img src="images/claudette.png" alt="CLAUDETTE Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/claudette.png" data-alt="CLAUDETTE Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1727,8 +1716,8 @@
                 <!-- COBRA -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=COBRA" alt="COBRA Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=COBRA" data-alt="COBRA Bag">
+                        <img src="images/cobra.png" alt="COBRA Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/cobra.png" data-alt="COBRA Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1747,8 +1736,8 @@
                 <!-- DURIAN BAG -->
                 <div class="product-card" id="durian-bag">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/F6D037/000000?text=DURIAN" alt="DURIAN BAG" id="durian-main-img" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/F6D037/000000?text=DURIAN" data-alt="DURIAN BAG">
+                        <img src="images/durian-bag-yellow.png" alt="DURIAN BAG" id="durian-main-img" class="product-image">
+                        <button class="inspect-btn" data-image="images/durian-bag-yellow.png" data-alt="DURIAN BAG">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1771,8 +1760,8 @@
                 <!-- ERICKA -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=ERICKA" alt="ERICKA Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=ERICKA" data-alt="ERICKA Bag">
+                        <img src="images/ericka.png" alt="ERICKA Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/ericka.png" data-alt="ERICKA Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1795,8 +1784,8 @@
                 <!-- FELISHA WHITE -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/FFFFFF/800020?text=FELISHA+WHITE" alt="FELISHA WHITE Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/FFFFFF/800020?text=FELISHA+WHITE" data-alt="FELISHA WHITE Bag">
+                        <img src="images/felisha-white.png" alt="FELISHA WHITE Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/felisha-white.png" data-alt="FELISHA WHITE Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1819,8 +1808,8 @@
                 <!-- GABRIEL -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=GABRIEL" alt="GABRIEL Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=GABRIEL" data-alt="GABRIEL Bag">
+                        <img src="images/gabriel.png" alt="GABRIEL Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/gabriel.png" data-alt="GABRIEL Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1843,8 +1832,8 @@
                 <!-- JHIANNA -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=JHIANNA" alt="JHIANNA Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=JHIANNA" data-alt="JHIANNA Bag">
+                        <img src="images/jhianna.png" alt="JHIANNA Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/jhianna.png" data-alt="JHIANNA Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1871,8 +1860,8 @@
                 <!-- JOBO -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=JOBO" alt="JOBO Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=JOBO" data-alt="JOBO Bag">
+                        <img src="images/jobo.png" alt="JOBO Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/jobo.png" data-alt="JOBO Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1891,8 +1880,8 @@
                 <!-- JOBO TRI-EMERALD -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/1C4946/FFFFFF?text=JOBO+TRI-EMERALD" alt="JOBO TRI-EMERALD Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/1C4946/FFFFFF?text=JOBO+TRI-EMERALD" data-alt="JOBO TRI-EMERALD Bag">
+                        <img src="images/jobo-tri-emerald.png" alt="JOBO TRI-EMERALD Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/jobo-tri-emerald.png" data-alt="JOBO TRI-EMERALD Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1915,8 +1904,8 @@
                 <!-- MOANA FLOWER -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/E38792/FFFFFF?text=MOANA+FLOWER" alt="MONNA FLOWER Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/E38792/FFFFFF?text=MOANA+FLOWER" data-alt="MONNA FLOWER Bag">
+                        <img src="images/moana-flower.png" alt="MONNA FLOWER Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/moana-flower.png" data-alt="MONNA FLOWER Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1939,8 +1928,8 @@
                 <!-- MULTICOLORED POODLE -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=MULTICOLORED+POODLE" alt="MULTICOLORED POODLE Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=MULTICOLORED+POODLE" data-alt="MULTICOLORED POODLE Bag">
+                        <img src="images/multicolored-poodle.png" alt="MULTICOLORED POODLE Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/multicolored-poodle.png" data-alt="MULTICOLORED POODLE Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1959,8 +1948,8 @@
                 <!-- MULTICOLORED WINDOW -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=MULTICOLORED+WINDOW" alt="MULTICOLORED WINDOW Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=MULTICOLORED+WINDOW" data-alt="MULTICOLORED WINDOW Bag">
+                        <img src="images/multicolored-window.png" alt="MULTICOLORED WINDOW Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/multicolored-window.png" data-alt="MULTICOLORED WINDOW Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1979,8 +1968,8 @@
                 <!-- POODLE SCALLOPS -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=POODLE+SCALLOPS" alt="POODLE SCALLOPS Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=POODLE+SCALLOPS" data-alt="POODLE SCALLOPS Bag">
+                        <img src="images/poodle-scallops.png" alt="POODLE SCALLOPS Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/poodle-scallops.png" data-alt="POODLE SCALLOPS Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -1999,8 +1988,8 @@
                 <!-- ROWENA FRINGES -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=ROWENA+FRINGES" alt="ROWENA FRINGES Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=ROWENA+FRINGES" data-alt="ROWENA FRINGES Bag">
+                        <img src="images/rowena-fringes.png" alt="ROWENA FRINGES Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/rowena-fringes.png" data-alt="ROWENA FRINGES Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -2027,8 +2016,8 @@
                 <!-- VALENTINA -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=VALENTINA" alt="VALENTINA Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=VALENTINA" data-alt="VALENTINA Bag">
+                        <img src="images/valentina.png" alt="VALENTINA Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/valentina.png" data-alt="VALENTINA Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -2047,8 +2036,8 @@
                 <!-- VICTORIA -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=VICTORIA" alt="VICTORIA Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=VICTORIA" data-alt="VICTORIA Bag">
+                        <img src="images/victoria.png" alt="VICTORIA Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/victoria.png" data-alt="VICTORIA Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -2071,8 +2060,8 @@
                 <!-- WINDOW SOLIHIYA -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=WINDOW+SOLIHIYA" alt="WINDOW SOLIHIYA Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=WINDOW+SOLIHIYA" data-alt="WINDOW SOLIHIYA Bag">
+                        <img src="images/window-solihiya.png" alt="WINDOW SOLIHIYA Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/window-solihiya.png" data-alt="WINDOW SOLIHIYA Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -2091,8 +2080,8 @@
                 <!-- YVETTE -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=YVETTE" alt="YVETTE Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=YVETTE" data-alt="YVETTE Bag">
+                        <img src="images/yvette.png" alt="YVETTE Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/yvette.png" data-alt="YVETTE Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -2115,8 +2104,8 @@
                 <!-- YVETTE MULTI COLORED BLACK -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/000000/FFFFFF?text=YVETTE+MULTI" alt="YVETTE MULTI COLORED BLACK Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/000000/FFFFFF?text=YVETTE+MULTI" data-alt="YVETTE MULTI COLORED BLACK Bag">
+                        <img src="images/yvette-multi-colored-black.png" alt="YVETTE MULTI COLORED BLACK Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/yvette-multi-colored-black.png" data-alt="YVETTE MULTI COLORED BLACK Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -2135,8 +2124,8 @@
                 <!-- YVETTE PLAIN -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=YVETTE+PLAIN" alt="YVETTE PLAIN Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=YVETTE+PLAIN" data-alt="YVETTE PLAIN Bag">
+                        <img src="images/yvette-plain.png" alt="YVETTE PLAIN Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/yvette-plain.png" data-alt="YVETTE PLAIN Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -2155,8 +2144,8 @@
                 <!-- YVETTE SOLIHIYA -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/f5f0e6/800020?text=YVETTE+SOLIHIYA" alt="YVETTE SOLIHIYA Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/f5f0e6/800020?text=YVETTE+SOLIHIYA" data-alt="YVETTE SOLIHIYA Bag">
+                        <img src="images/yvette-solihiya.png" alt="YVETTE SOLIHIYA Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/yvette-solihiya.png" data-alt="YVETTE SOLIHIYA Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -2179,8 +2168,8 @@
                 <!-- YVETTE TRI-EMERALD -->
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x400/1C4946/FFFFFF?text=YVETTE+TRI-EMERALD" alt="YVETTE TRI-EMERALD Bag" class="product-image">
-                        <button class="inspect-btn" data-image="https://via.placeholder.com/800x800/1C4946/FFFFFF?text=YVETTE+TRI-EMERALD" data-alt="YVETTE TRI-EMERALD Bag">
+                        <img src="images/yvette-tri-emerald.png" alt="YVETTE TRI-EMERALD Bag" class="product-image">
+                        <button class="inspect-btn" data-image="images/yvette-tri-emerald.png" data-alt="YVETTE TRI-EMERALD Bag">
                             <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
@@ -2213,6 +2202,7 @@
         <div class="color-palette">
             <div class="color-intro">
                 <h3>Here are the color options we offer for all our bags</h3>
+                <!-- Removed the paragraph text as requested -->
             </div>
             
             <div class="color-section">
@@ -2324,25 +2314,62 @@
                 <div class="about-text">
                     <h2>Our Story</h2>
                     <h3>Bags Made Of Second Chances; Filled With Humble Beginnings with a Global Purpose</h3>
-                    <p>Yvette's Bags and Beads Collection has a powerful origin story that began in November 2007, born from a simple act of service. Its founder, Yvette Marie C. Punzalan, a computer engineer by profession, was asked by her father to teach crocheting at the Davao City Jail. There, she introduced a group of women deprived of liberty to an unconventional craft: creating with plastic twine from carton boxes.</p>
+                    <p>Yvette's Bags and Beads Collection has a powerful origin story that began in November 2007, born from a simple act of service. Its founder, Yvette Marie C. Punzalan, a computer engineer by profession, was asked by her father to teach crocheting at the Davao City Jail. There, she introduced a group of women deprived of liberty to an unconventional craft: creating with plastic twine from carton boxes. What started with twenty eager trainees tested their patience, and only ten remained. Yet, Yvette was so moved by their dedication that she was inspired to continue.</p>
                     
-                    <p>This endeavor transformed from a volunteer project into a profound mission when Yvette made a pivotal decision. She began compensating the women for their simple yet heartfelt bag designs. This act of payment became a catalyst for change, creating a tangible lifeline.</p>
+                    <p>This endeavor transformed from a volunteer project into a profound mission when Yvette made a pivotal decision. She began compensating the women for their simple yet heartfelt bag designs. This act of payment became a catalyst for change, creating a tangible lifeline. She was so committed that she sought out the ten women who had initially left, determined to offer them the same opportunity. Witnessing the impact, how one artisan could now support her child's education and how families were becoming whole again as mothers reclaimed their treasured roles, Yvette knew this was her true calling. This conviction led her to formally register the business with the DTI in 2008.</p>
                     
-                    <p>Today, the enterprise operates on a lean, impactful model, but its true value was never in the profit margin. While the unique, eco friendly material makes each bag distinctive, it is the powerful human story of hope and second chances that is stitched into every fiber.</p>
+                    <p>Today, the enterprise operates on a lean, impactful model, but its true value was never in the profit margin. While the unique, eco friendly material makes each bag distinctive, it is the powerful human story of hope and second chances that is stitched into every fiber. Each product is an invaluable testament to human transformation. When you choose one of our creations, you are supporting a mission far greater than just a business. You are helping to weave a future of dignity and resilience.</p>
                 </div>
                 <div class="about-media">
                     <!-- Image Gallery -->
                     <div class="image-gallery">
                         <div class="gallery-container">
                             <div class="gallery-slide active">
-                                <img src="https://via.placeholder.com/800x600/f5f0e6/8B7355?text=Our+Story+1" alt="Yvette's Story - Cover Photo" class="gallery-image">
-                                <button class="inspect-btn" data-image="https://via.placeholder.com/1200x900/f5f0e6/8B7355?text=Our+Story+1" data-alt="Yvette's Story - Cover Photo">
+                                <img src="images/about-cover.png" alt="Yvette's Story - Cover Photo" class="gallery-image">
+                                <button class="inspect-btn" data-image="images/about-cover.png" data-alt="Yvette's Story - Cover Photo">
                                     <i class="fas fa-search-plus"></i>
                                 </button>
                             </div>
                             <div class="gallery-slide">
-                                <img src="https://via.placeholder.com/800x600/f5f0e6/8B7355?text=Our+Story+2" alt="Yvette's Story - Image 2" class="gallery-image">
-                                <button class="inspect-btn" data-image="https://via.placeholder.com/1200x900/f5f0e6/8B7355?text=Our+Story+2" data-alt="Yvette's Story - Image 2">
+                                <img src="images/about-2.jpg" alt="Yvette's Story - Image 2" class="gallery-image">
+                                <button class="inspect-btn" data-image="images/about-2.jpg" data-alt="Yvette's Story - Image 2">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="images/about-3.jpg" alt="Yvette's Story - Image 3" class="gallery-image">
+                                <button class="inspect-btn" data-image="images/about-3.jpg" data-alt="Yvette's Story - Image 3">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="images/about-4.jpg" alt="Yvette's Story - Image 4" class="gallery-image">
+                                <button class="inspect-btn" data-image="images/about-4.jpg" data-alt="Yvette's Story - Image 4">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                            <!-- Additional images as requested -->
+                            <div class="gallery-slide">
+                                <img src="images/about-5.jpg" alt="Yvette's Story - Image 5" class="gallery-image">
+                                <button class="inspect-btn" data-image="images/about-5.jpg" data-alt="Yvette's Story - Image 5">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="images/about-6.jpg" alt="Yvette's Story - Image 6" class="gallery-image">
+                                <button class="inspect-btn" data-image="images/about-6.jpg" data-alt="Yvette's Story - Image 6">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="images/about-7.jpg" alt="Yvette's Story - Image 7" class="gallery-image">
+                                <button class="inspect-btn" data-image="images/about-7.jpg" data-alt="Yvette's Story - Image 7">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="images/about-8.jpg" alt="Yvette's Story - Image 8" class="gallery-image">
+                                <button class="inspect-btn" data-image="images/about-8.jpg" data-alt="Yvette's Story - Image 8">
                                     <i class="fas fa-search-plus"></i>
                                 </button>
                             </div>
@@ -2358,16 +2385,22 @@
                         <div class="gallery-indicators">
                             <div class="gallery-indicator active"></div>
                             <div class="gallery-indicator"></div>
+                            <div class="gallery-indicator"></div>
+                            <div class="gallery-indicator"></div>
+                            <div class="gallery-indicator"></div>
+                            <div class="gallery-indicator"></div>
+                            <div class="gallery-indicator"></div>
+                            <div class="gallery-indicator"></div>
                         </div>
                     </div>
                     
                     <!-- Video Section -->
                     <div class="video-container">
-                        <video controls poster="https://via.placeholder.com/800x450/f5f0e6/8B7355?text=Video+Placeholder">
-                            <source src="#" type="video/mp4">
+                        <video controls>
+                            <source src="images/video-placeholder.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <button class="inspect-btn" data-video="#" data-alt="Yvette's Story Video">
+                        <button class="inspect-btn" data-video="images/video-placeholder.mp4" data-alt="Yvette's Story Video">
                             <i class="fas fa-expand"></i>
                         </button>
                     </div>
@@ -2447,7 +2480,7 @@
                 <p>&copy; 2007 Yvette's Bags & Beads Collection. All rights reserved.</p>
             </div>
             <div class="credits">
-                <p>Website crafted by <span>Abdallah Ozman</span></p>
+                <p>Website crafted by <span>Oz Ozman</span></p>
             </div>
         </div>
     </footer>
@@ -2471,7 +2504,7 @@
             });
         });
 
-        // Mobile Navigation Toggle
+        // Fixed Mobile Navigation Toggle
         const hamburger = document.getElementById('hamburger');
         const mainNav = document.getElementById('mainNav');
 
@@ -2479,10 +2512,12 @@
             this.classList.toggle('active');
             mainNav.classList.toggle('active');
             
-            // Prevent body scroll when menu is open
+            // Improved body scroll handling
             if (mainNav.classList.contains('active')) {
+                document.body.classList.add('menu-open');
                 document.body.style.overflow = 'hidden';
             } else {
+                document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             }
         });
@@ -2492,8 +2527,21 @@
             link.addEventListener('click', function() {
                 hamburger.classList.remove('active');
                 mainNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mainNav.classList.contains('active') && 
+                !mainNav.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mainNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+            }
         });
 
         // Home button functionality
@@ -2507,6 +2555,7 @@
             // Close mobile menu if open
             hamburger.classList.remove('active');
             mainNav.classList.remove('active');
+            document.body.classList.remove('menu-open');
             document.body.style.overflow = '';
         });
 
@@ -2520,6 +2569,7 @@
             // Close mobile menu if open
             hamburger.classList.remove('active');
             mainNav.classList.remove('active');
+            document.body.classList.remove('menu-open');
             document.body.style.overflow = '';
         });
 
@@ -2534,7 +2584,7 @@
                 
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
                 }
@@ -2671,7 +2721,7 @@
             setInterval(nextSlide, 5000);
         });
 
-        // Fullscreen Image Modal Functionality
+        // Fixed Fullscreen Image Modal Functionality
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImage");
         const captionText = document.getElementById("modalCaption");
