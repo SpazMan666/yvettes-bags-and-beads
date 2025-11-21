@@ -80,15 +80,15 @@
         @media (max-width: 767px) {
             .collections, .products {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
+                gap: 20px;
             }
         }
 
-        /* Small phones: 1 column */
+        /* Small phones: 2 columns (changed from 1fr to 2 columns) */
         @media (max-width: 480px) {
             .collections, .products {
-                grid-template-columns: 1fr;
-                gap: 25px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
         }
 
@@ -1313,7 +1313,7 @@
             }
             
             .collection-img, .product-img {
-                height: 220px;
+                height: 200px;
             }
             
             .social-icons a {
@@ -1389,11 +1389,23 @@
             }
 
             .collection-info, .product-info {
-                padding: 20px;
+                padding: 15px;
+            }
+            
+            .collection-img, .product-img {
+                height: 180px;
+            }
+            
+            .collection-info h3, .product-info h3 {
+                font-size: 1.1rem;
+            }
+            
+            .collection-info p, .product-info p {
+                font-size: 0.9rem;
             }
             
             .color-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .color-swatch {
