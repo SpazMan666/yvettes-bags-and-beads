@@ -31,7 +31,9 @@
             box-sizing: border-box;
         }
 
-        html {
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
@@ -40,17 +42,18 @@
             color: var(--black);
             line-height: 1.7;
             font-family: 'Cormorant Garamond', serif;
-            overflow-x: hidden;
+            position: relative;
+            width: 100%;
         }
 
         .container {
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 20px;
         }
 
-        /* ===== ENHANCED RESPONSIVE GRID - 3 COLUMNS DESKTOP, 2 COLUMNS MOBILE ===== */
+        /* ===== ENHANCED RESPONSIVE GRID ===== */
         .collections, .products {
             display: grid;
             gap: 40px;
@@ -89,7 +92,7 @@
             }
         }
 
-        /* ===== IMPROVED HEADER WITH BETTER SPACING ===== */
+        /* ===== IMPROVED HEADER ===== */
         .site-header {
             position: sticky;
             top: 0;
@@ -115,6 +118,8 @@
             align-items: center;
             gap: 20px;
             z-index: 1001;
+            flex: 1;
+            min-width: 0;
         }
 
         .brand-logo {
@@ -131,6 +136,7 @@
         .brand-text {
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         .brand-name {
@@ -139,6 +145,9 @@
             font-size: 1.6rem;
             color: var(--maroon);
             font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .brand-tagline {
@@ -147,9 +156,12 @@
             font-size: 1rem;
             color: var(--natural-brown);
             font-style: italic;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* ===== IMPROVED NAVIGATION WITH BETTER SPACING ===== */
+        /* ===== IMPROVED NAVIGATION ===== */
         .main-nav {
             display: flex;
             gap: 35px;
@@ -275,7 +287,7 @@
             border-bottom: none;
         }
 
-        /* ===== MOBILE HAMBURGER MENU ===== */
+        /* ===== MOBILE HAMBURGER MENU - FIXED ===== */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -374,7 +386,7 @@
             box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4);
         }
 
-        /* ===== IMPROVED SECTION TITLES WITH BETTER SPACING ===== */
+        /* ===== IMPROVED SECTION TITLES ===== */
         .section-title {
             text-align: center;
             margin: 120px 0 70px;
@@ -404,7 +416,7 @@
             border-radius: 1px;
         }
 
-        /* ===== ENHANCED PRODUCT CARDS WITH BETTER SPACING ===== */
+        /* ===== ENHANCED PRODUCT CARDS ===== */
         .collection-card, .product-card {
             background-color: var(--white);
             overflow: hidden;
@@ -1031,7 +1043,7 @@
             transform: translateY(-3px);
         }
 
-        /* ===== FULLSCREEN IMAGE MODAL ===== */
+        /* ===== FULLSCREEN IMAGE MODAL - FIXED FOR MOBILE ===== */
         .image-modal {
             display: none;
             position: fixed;
@@ -1042,6 +1054,9 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.95);
             animation: fadeIn 0.3s;
+            padding: 20px 10px;
+            align-items: center;
+            justify-content: center;
         }
 
         @keyframes fadeIn {
@@ -1050,49 +1065,57 @@
         }
 
         .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 95%;
-            max-height: 95%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            object-fit: contain;
+            max-width: 100%;
+            max-height: 80vh;
+            width: auto;
+            height: auto;
             border-radius: var(--border-radius);
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
         }
 
         .close-modal {
             position: absolute;
-            top: 25px;
-            right: 40px;
+            top: 10px;
+            right: 15px;
             color: #f1f1f1;
-            font-size: 40px;
+            font-size: 30px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
             z-index: 2001;
+            background: rgba(0, 0, 0, 0.7);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .close-modal:hover {
             color: var(--light-maroon);
+            background: rgba(0, 0, 0, 0.9);
         }
 
         .modal-caption {
             position: absolute;
-            bottom: 25px;
+            bottom: 10px;
             left: 0;
             width: 100%;
             text-align: center;
             color: white;
-            font-size: 1.3rem;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.5);
+            font-size: 1rem;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 0 0 var(--border-radius) var(--border-radius);
         }
 
-        /* ===== ENHANCED RESPONSIVE DESIGN ===== */
+        /* ===== ENHANCED RESPONSIVE DESIGN - FIXED ===== */
         @media (max-width: 1200px) {
             .container {
                 padding: 0 30px;
@@ -1118,6 +1141,7 @@
             }
         }
 
+        /* ===== FIXED MOBILE NAVIGATION ===== */
         @media (max-width: 768px) {
             /* Mobile Navigation */
             .hamburger {
@@ -1127,17 +1151,16 @@
             .main-nav {
                 position: fixed;
                 top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
+                right: -280px;
+                width: 280px;
                 height: 100vh;
                 background: var(--cream);
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: flex-start;
-                padding: 100px 30px 30px;
+                padding: 120px 25px 30px;
                 gap: 20px;
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
                 transition: right 0.4s ease;
                 z-index: 999;
             }
@@ -1148,7 +1171,7 @@
 
             .nav-link {
                 font-size: 1.2rem;
-                padding: 10px 0;
+                padding: 12px 0;
                 width: 100%;
             }
 
@@ -1162,6 +1185,7 @@
             .search-container {
                 width: 100%;
                 margin-right: 0;
+                position: static;
             }
 
             .search-input {
@@ -2480,7 +2504,7 @@
             });
         });
 
-        // Mobile Navigation Toggle
+        // Fixed Mobile Navigation Toggle
         const hamburger = document.getElementById('hamburger');
         const mainNav = document.getElementById('mainNav');
 
@@ -2488,10 +2512,12 @@
             this.classList.toggle('active');
             mainNav.classList.toggle('active');
             
-            // Prevent body scroll when menu is open
+            // Improved body scroll handling
             if (mainNav.classList.contains('active')) {
+                document.body.classList.add('menu-open');
                 document.body.style.overflow = 'hidden';
             } else {
+                document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             }
         });
@@ -2501,8 +2527,21 @@
             link.addEventListener('click', function() {
                 hamburger.classList.remove('active');
                 mainNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mainNav.classList.contains('active') && 
+                !mainNav.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mainNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+            }
         });
 
         // Home button functionality
@@ -2516,6 +2555,7 @@
             // Close mobile menu if open
             hamburger.classList.remove('active');
             mainNav.classList.remove('active');
+            document.body.classList.remove('menu-open');
             document.body.style.overflow = '';
         });
 
@@ -2529,6 +2569,7 @@
             // Close mobile menu if open
             hamburger.classList.remove('active');
             mainNav.classList.remove('active');
+            document.body.classList.remove('menu-open');
             document.body.style.overflow = '';
         });
 
@@ -2680,47 +2721,59 @@
             setInterval(nextSlide, 5000);
         });
 
-        // Fullscreen Image Modal Functionality
+        // Fixed Fullscreen Image Modal Functionality
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImage");
         const captionText = document.getElementById("modalCaption");
         const closeModal = document.querySelector(".close-modal");
 
+        // Function to open modal
+        function openModal(imgSrc, imgAlt) {
+            modal.style.display = "flex";
+            modalImg.src = imgSrc;
+            captionText.innerHTML = imgAlt;
+            
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close modal
+        function closeModalFunc() {
+            modal.style.display = "none";
+            document.body.style.overflow = '';
+        }
+
         // Make all product images and gallery images clickable for fullscreen view
         document.querySelectorAll('.product-image, .gallery-image').forEach(img => {
             img.addEventListener('click', function() {
-                modal.style.display = "block";
-                modalImg.src = this.src;
-                captionText.innerHTML = this.alt;
+                openModal(this.src, this.alt);
             });
         });
 
         // Also keep the inspect buttons functional
         document.querySelectorAll('.inspect-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const img = this.closest('.collection-img, .product-img, .gallery-slide').querySelector('img');
-                modal.style.display = "block";
-                modalImg.src = this.getAttribute('data-image');
-                captionText.innerHTML = this.getAttribute('data-alt');
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent triggering the image click event
+                const imgSrc = this.getAttribute('data-image');
+                const imgAlt = this.getAttribute('data-alt');
+                openModal(imgSrc, imgAlt);
             });
         });
 
         // Close modal when X is clicked
-        closeModal.addEventListener('click', function() {
-            modal.style.display = "none";
-        });
+        closeModal.addEventListener('click', closeModalFunc);
 
         // Close modal when clicking outside the image
         modal.addEventListener('click', function(event) {
             if (event.target === modal) {
-                modal.style.display = "none";
+                closeModalFunc();
             }
         });
 
         // Close modal with ESC key
         document.addEventListener('keydown', function(event) {
             if (event.key === "Escape") {
-                modal.style.display = "none";
+                closeModalFunc();
             }
         });
 
